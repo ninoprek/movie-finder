@@ -7,6 +7,8 @@
       display: flex
       justify-content: center
       margin: 100px 0 0 350px
+      img
+        max-width: 400px
 
     &--info
       margin: auto 40px
@@ -41,10 +43,11 @@
 export default {
   name: 'Movie',
 
-  props: [ 'APIkey', 'searchTitle' ],
+  props: [ 'searchTitle' ],
 
   data: function () {
     return {
+      APIkey: '409e80d3',
       movie: [],
       dataLoaded: false,
       imdbID: this.$route.query.imdbID
@@ -64,6 +67,7 @@ export default {
       .then(response => {
         if (response.data.Response === 'True') {
           this.movie = response.data;
+          if (this.movie.Poster === "N/A") this.movie.Poster = '/default.jpg'
           this.dataLoaded = true;
         }
       })

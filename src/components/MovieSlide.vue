@@ -42,6 +42,7 @@ export default {
   props: [ 'movie' , 'APIkey', 'searchTitle'],
 
   created () {
+    if (this.movie.Poster === "N/A") this.movie.Poster = '/default.jpg'
   },
 
   methods: {
