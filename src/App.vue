@@ -8,7 +8,9 @@
 
     a
       text-decoration: none
-      color: red
+      color: white
+      background-color: aqua
+      padding: 10px 25px
 
     &--header
       margin: 100px auto 0 auto
