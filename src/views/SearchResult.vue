@@ -2,11 +2,12 @@
   .SearchResult
     display: flex
     flex-direction: column
-    margin: 0 20px
+    margin: 0 auto
+    width: 1240px
 
     &--container
       h2
-        margin: 0 auto 100px auto
+        margin: 0 auto 80px auto
         text-align: center
 
 
@@ -17,7 +18,7 @@
 
     &--input
       display: flex
-      margin: 80px 0
+      margin: 100px auto
 
       input
         font-size: 1em
