@@ -1,11 +1,11 @@
 <style lang="stylus">
-
 </style>
 
 <template>
   <div class="home">
     <input type="text" placeholder="Enter a movie title" v-model="movieTitle">
-    <button @click="searchMovie">Submit</button>
+    <button @click="searchMovies">Search</button>
+    <img src="../assets/icons/search-icon.svg" alt="Search icon">
 
     <div>{{ movieTitle }}</div>
   </div>
@@ -28,18 +28,8 @@ export default {
   },
 
   methods: {
-    searchMovie () {
-
-      let params = { s: this.movieTitle };
-
-      this.axios
-      .get('http://www.omdbapi.com/?apikey=' + this.APIkey , { params: params })
-      .then(response => (
-        console.log('RESPONSE: ', response)
-      ))
-      .catch(error => (
-        console.log('CATCH RESPONSE: ', error)
-      ))
+    searchMovies () {
+      this.$router.push({ name: 'SearchResult', query: { movieTitle: this.movieTitle } });
     }
   }
 }
