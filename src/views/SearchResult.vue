@@ -2,18 +2,26 @@
   .SearchResult
     display: flex
     flex-direction: column
+    margin: 0 20px
+
+    &--container
+      h2
+        margin: 0 auto 100px auto
+        text-align: center
+
 
     &--movies
       margin: 20px auto 0 auto
       display: flex
       flex-wrap: wrap
 
-    h2
-      margin: 100px auto 80px auto
+    &--input
+      display: flex
+      margin: 80px 0
 
-    input
-      font-size: 1em
-      padding: 5px 10px
+      input
+        font-size: 1em
+        padding: 5px 10px
 
 </style>
 
@@ -21,16 +29,16 @@
   <div class="SearchResult">
     <div class="SearchResult--input">
       <input type="text" placeholder="Enter a movie title" v-model="title">
-      <button @click="updateRouter" :disabled="buttonDisabled">Search</button>
+      <button @click="updateRouter" :disabled="buttonDisabled">SEARCH</button>
     </div>
-    <div v-if="dataLoaded">
+    <div v-if="dataLoaded" class="SearchResult--container">
       <h2>Search results:</h2>
       <p v-if="this.errorMessage != ''" class="SearchResult--errorMessage">{{ errorMessage }}</p>
 
       <div v-if="movies.length > 0" class="SearchResult--movies">
         <MovieSlide
           v-for="movie in movies"
-          :key="movie.Title"
+          :key="movie.imdbID"
           :movie='movie'
           :searchTitle='latestSearch'
           :APIkey='APIkey'
@@ -71,8 +79,6 @@ export default {
     },
 
     $route: function () {
-      console.log(this.$route);
-      this.title = this.$route.query.movieTitle;
       this.getMovies();
     }
   },
@@ -93,7 +99,6 @@ export default {
       if (this.dataLoaded) this.dataLoaded = false;
 
       let params = { s: this.title };
-      this.$route.query.movieTitle = this.title;
       this.latestSearch = this.title;
       this.title = '';
 
@@ -105,6 +110,7 @@ export default {
           this.dataLoaded = true;
         } else {
           this.errorMessage = response.data.Error;
+          this.dataLoaded = true;
         }
       })
       .catch(error => {

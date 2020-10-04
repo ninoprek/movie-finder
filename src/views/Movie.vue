@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <router-link class="Movie--backButton" :to="{ name: 'SearchResult', params: { movieTitle: this.searchTitle } }">BACK</router-link>
+    <router-link class="Movie--backButton" :to="{ name: 'SearchResult', query: { movieTitle: this.searchTitle } }">BACK</router-link>
   </div>
 </template>
 
@@ -41,17 +41,17 @@
 export default {
   name: 'Movie',
 
-  props: [ 'imdbID', 'APIkey', 'searchTitle' ],
+  props: [ 'APIkey', 'searchTitle' ],
 
   data: function () {
     return {
       movie: [],
-      dataLoaded: false
+      dataLoaded: false,
+      imdbID: this.$route.query.imdbID
     }
   },
 
   created () {
-    console.log('Movie: ', this.movie);
     this.getMovie();
   },
 

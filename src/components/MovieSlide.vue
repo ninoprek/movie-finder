@@ -7,7 +7,6 @@
     margin: 0px 10px 40px 10px
     padding: 10px 10px 0 10px
     width: 270px
-    height: 440px
     box-shadow: 0px 0px 10px -4px rgba(140,140,140,1);
     -webkit-box-shadow: 0px 0px 10px -4px rgba(140,140,140,1);
     -moz-box-shadow: 0px 0px 10px -4px rgba(140,140,140,1);
@@ -43,13 +42,9 @@ export default {
 
   methods: {
     goToMovie () {
-      this.$router.push({ name: 'Movie', params: { imdbID: this.movie.imdbID, APIkey: this.APIkey, searchTitle: this.searchTitle } })
+      this.$router.push({ name: 'Movie', params: { APIkey: this.APIkey, searchTitle: this.searchTitle }, query: { imdbID: this.movie.imdbID } })
     }
   }
 
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="stylus" scoped>
-</style>
