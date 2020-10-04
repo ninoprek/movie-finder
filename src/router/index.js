@@ -12,7 +12,14 @@ const routes = [
   {
     path: '/search-result',
     name: 'SearchResult',
-    component: () => import('../views/SearchResult.vue')
+    component: () => import('../views/SearchResult.vue'),
+    props: true
+  },
+  {
+    path: '/movie-details',
+    name: 'Movie',
+    component: () => import('../views/Movie.vue'),
+    props: true
   },
 ]
 
