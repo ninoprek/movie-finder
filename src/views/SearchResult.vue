@@ -3,7 +3,7 @@
     display: flex
     flex-direction: column
     margin: 0 auto
-    width: 1240px
+    max-width: 1240px
 
     &--container
       h2

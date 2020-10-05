@@ -16,7 +16,7 @@
         font-weight: 600
 
     &--backButton
-      margin: 80px auto
+      margin: 60px auto
 
 </style>
 
